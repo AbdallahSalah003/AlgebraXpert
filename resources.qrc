@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>assets/al-khawrizmi.jpg</file>
+    </qresource>
+</RCC>
