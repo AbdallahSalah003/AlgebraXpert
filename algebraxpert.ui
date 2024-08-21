@@ -28,7 +28,7 @@
    <string notr="true">background-color: #17153B</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="algebraVector">
     <property name="geometry">
      <rect>
       <x>600</x>
@@ -53,7 +53,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QTextEdit" name="welcomeText">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -152,6 +152,9 @@ QPushButton:hover {
       <width>16</width>
       <height>61</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="exitButton">
