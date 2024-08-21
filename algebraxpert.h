@@ -2,6 +2,8 @@
 #define ALGEBRAXPERT_H
 
 #include <QMainWindow>
+#include <QVBoxLayout>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -18,11 +20,13 @@ public:
     ~AlgebraXpert();
 
 private slots:
-    void on_startButton_clicked();
-
-    void on_exitButton_clicked();
+    void onStartButtonClicked();
+    void onExitButtonClicked();
 
 private:
     Ui::AlgebraXpert *ui;
+    QWidget *sidebar;
+    QVBoxLayout *sidebarLayout;
+    void createSidebar();
 };
 #endif // ALGEBRAXPERT_H
