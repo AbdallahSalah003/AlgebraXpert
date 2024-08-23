@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include <QWidget>
+#include "solvers/linear_equation_solver/linear_equation_solver.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,6 +24,10 @@ private slots:
     void onStartButtonClicked();
     void onExitButtonClicked();
     void onBackButtonClicked();
+
+    void onLinearEquationSolverButtonClicked();
+
+    void onLinearEquationSolveButtonClicked();
 
 private:
     Ui::AlgebraXpert *ui;
