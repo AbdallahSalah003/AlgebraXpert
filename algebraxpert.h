@@ -22,11 +22,10 @@ public:
 private slots:
     void onStartButtonClicked();
     void onExitButtonClicked();
+    void onBackButtonClicked();
 
 private:
     Ui::AlgebraXpert *ui;
-    QWidget *sidebar;
-    QVBoxLayout *sidebarLayout;
-    void createSidebar();
+
 };
 #endif // ALGEBRAXPERT_H

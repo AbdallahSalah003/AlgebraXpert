@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1216</width>
-    <height>728</height>
+    <height>749</height>
    </rect>
   </property>
   <property name="font">
@@ -23,6 +23,12 @@
   </property>
   <property name="windowTitle">
    <string>AlgebraXpert</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon::ThemeIcon::GoHome"/>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: #17153B</string>
@@ -215,6 +221,279 @@ QPushButton:hover {
       <height>61</height>
      </size>
     </property>
+   </widget>
+   <widget class="QWidget" name="sideBar" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>281</width>
+      <height>749</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #c8acd6</string>
+    </property>
+    <widget class="QPushButton" name="backButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>51</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    font-family: 'Lato', sans-serif;
+    font-size: 14pt;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #433D8B;
+    border: none;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 15px;
+    padding: 10px 20px; /* Adjust padding for button size */
+    text-align: center;
+}
+
+QPushButton:hover {
+    background-color: #2E236C;
+    opacity: 0.5; /* Fade effect on hover */
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset theme="QIcon::ThemeIcon::GoHome"/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="linearEquationSolverButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>50</y>
+       <width>281</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    font-family: 'Lato', sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #433D8B;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; /* Adjust padding for button size */
+    text-align: center;
+}
+
+QPushButton:hover {
+    background-color: #2E236C;
+    opacity: 0.5; /* Fade effect on hover */
+}</string>
+     </property>
+     <property name="text">
+      <string>Linear Equation Solver</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="quadraticEquationSolverButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>100</y>
+       <width>281</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    font-family: 'Lato', sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #433D8B;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; /* Adjust padding for button size */
+    text-align: center;
+}
+
+QPushButton:hover {
+    background-color: #2E236C;
+    opacity: 0.5; /* Fade effect on hover */
+}</string>
+     </property>
+     <property name="text">
+      <string>Quadratic Equation Solver</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="systemEquationsSolverButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>150</y>
+       <width>281</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    font-family: 'Lato', sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #433D8B;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; /* Adjust padding for button size */
+    text-align: center;
+}
+
+QPushButton:hover {
+    background-color: #2E236C;
+    opacity: 0.5; /* Fade effect on hover */
+}</string>
+     </property>
+     <property name="text">
+      <string>System of Equations Solver</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="matrixBinaryOperationsButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>200</y>
+       <width>281</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    font-family: 'Lato', sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #433D8B;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; /* Adjust padding for button size */
+    text-align: center;
+}
+
+QPushButton:hover {
+    background-color: #2E236C;
+    opacity: 0.5; /* Fade effect on hover */
+}</string>
+     </property>
+     <property name="text">
+      <string>Matrix Binary Operations</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="matrixDeterminantButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>250</y>
+       <width>281</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    font-family: 'Lato', sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #433D8B;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; /* Adjust padding for button size */
+    text-align: center;
+}
+
+QPushButton:hover {
+    background-color: #2E236C;
+    opacity: 0.5; /* Fade effect on hover */
+}</string>
+     </property>
+     <property name="text">
+      <string>Matrix Determinant</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="matrixInverseButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>300</y>
+       <width>281</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    font-family: 'Lato', sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #433D8B;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; /* Adjust padding for button size */
+    text-align: center;
+}
+
+QPushButton:hover {
+    background-color: #2E236C;
+    opacity: 0.5; /* Fade effect on hover */
+}</string>
+     </property>
+     <property name="text">
+      <string>Matrix Inverse</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="matrixEigenValuesButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>350</y>
+       <width>281</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    font-family: 'Lato', sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #433D8B;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; /* Adjust padding for button size */
+    text-align: center;
+}
+
+QPushButton:hover {
+    background-color: #2E236C;
+    opacity: 0.5; /* Fade effect on hover */
+}</string>
+     </property>
+     <property name="text">
+      <string>Matrix EigenValues</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
