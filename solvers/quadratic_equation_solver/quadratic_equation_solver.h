@@ -1,21 +1,11 @@
 #ifndef QUADRATIC_EQUATION_SOLVER_H
 #define QUADRATIC_EQUATION_SOLVER_H
 
-#include <iostream>
-#include <stdexcept>
-#include <string.h>
-#include <sstream>
-#include <iomanip>
-#include <math.h>
-#include <complex>
-#include <variant>
+#include "../equation_solver/equation_solver.h"
 
-class QuadraticEquation
+class QuadraticEquation : public EquationSolver
 {
 private:
-    double a;
-    double b;
-    double c;
     double d;
     std::variant<double, std::complex<double>> x1;
     std::variant<double, std::complex<double>> x2;
@@ -23,9 +13,9 @@ private:
 public:
     QuadraticEquation(double a, double b, double c, double d);
 
-    void solve();
-    std::string getEquation() const;
-    std::string getX() const;
+    void solve() override;
+    std::string getEquation() const override;
+    std::string getX() const override;
 };
 
 #endif // QUADRATIC_EQUATION_SOLVER_H

@@ -1,6 +1,6 @@
 #include "quadratic_equation_solver.h"
 
-QuadraticEquation::QuadraticEquation(double a, double b, double c, double d) : a(a), b(b), c(c), d(d) {}
+QuadraticEquation::QuadraticEquation(double a, double b, double c, double d) : EquationSolver(a, b, c), d(d) {}
 
 void QuadraticEquation::solve() {
     if (a == 0) {

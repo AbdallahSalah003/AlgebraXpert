@@ -16,6 +16,7 @@ SOURCES += \
 
 HEADERS += \
     algebraxpert.h \
+    solvers/equation_solver/equation_solver.h \
     solvers/linear_equation_solver/linear_equation_solver.hpp \
     solvers/quadratic_equation_solver/quadratic_equation_solver.hpp \
 

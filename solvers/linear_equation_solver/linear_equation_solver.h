@@ -1,26 +1,19 @@
 #ifndef LINEAR_EQUATION_SOLVER_H
 #define LINEAR_EQUATION_SOLVER_H
 
-#include <iostream>
-#include <stdexcept>
-#include <string.h>
-#include <sstream>
-#include <iomanip>
+#include "../equation_solver/equation_solver.h"
 
-class LinearEquation
+class LinearEquation : public EquationSolver
 {
 private:
-    double a;
-    double b;
-    double c;
     double x;
 
 public:
     LinearEquation(double a, double b, double c);
 
-    double solve();
-    std::string getEquation() const;
-    std::string getX() const;
+    void solve() override;
+    std::string getEquation() const override;
+    std::string getX() const override;
 };
 
 #endif // LINEAR_EQUATION_SOLVER_H

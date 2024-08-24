@@ -1,13 +1,12 @@
 #include "linear_equation_solver.h"
 
-LinearEquation::LinearEquation(double a, double b, double c) : a(a), b(b), c(c) {}
+LinearEquation::LinearEquation(double a, double b, double c) : EquationSolver(a, b, c) {}
 
-double LinearEquation::solve() {
+void LinearEquation::solve() {
     if (a == 0) {
         throw std::runtime_error("Invalid equation: 'a' cannot be zero.");
     }
     this->x = (c - b) / a;
-    return this->x;
 }
 std::string LinearEquation::getEquation() const {
     std::ostringstream stream;
