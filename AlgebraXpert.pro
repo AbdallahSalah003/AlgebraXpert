@@ -13,13 +13,11 @@ SOURCES += \
     algebraxpert.cpp \
     solvers/linear_equation_solver/linear_equation_solver.cpp \
     solvers/quadratic_equation_solver/quadratic_equation_solver.cpp \
-    solvers/quadratic_equation_solver/quadratic_equation_solver.cpp
 
 HEADERS += \
     algebraxpert.h \
     solvers/linear_equation_solver/linear_equation_solver.hpp \
     solvers/quadratic_equation_solver/quadratic_equation_solver.hpp \
-    solvers/quadratic_equation_solver/quadratic_equation_solver.hpp
 
 
 FORMS += \

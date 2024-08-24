@@ -8,11 +8,14 @@ AlgebraXpert::AlgebraXpert(QWidget *parent)
     ui->setupUi(this);
     ui->sideBar->hide();
     ui->LinearEquationSolverMenu->hide();
+    ui->quadraticEquationSolverMenu->hide();
     connect(ui->startButton, &QPushButton::clicked, this, &AlgebraXpert::onStartButtonClicked);
     connect(ui->exitButton, &QPushButton::clicked, this, &AlgebraXpert::onExitButtonClicked);
     connect(ui->backButton, &QPushButton::clicked, this, &AlgebraXpert::onBackButtonClicked);
     connect(ui->linearEquationSolverButton, &QPushButton::clicked, this, &AlgebraXpert::onLinearEquationSolverButtonClicked);
+    connect(ui->quadraticEquationSolverButton, &QPushButton::clicked, this, &AlgebraXpert::onQuadraticEquationSolverButtonClicked);
     connect(ui->linearEquationSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onLinearEquationSolveButtonClicked);
+    connect(ui->quadraticEquationSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onQuadraticEquationSolveButtonClicked);
 }
 
 AlgebraXpert::~AlgebraXpert()
@@ -44,14 +47,25 @@ void AlgebraXpert::onBackButtonClicked()
     ui->startButton->show();
     ui->sideBar->hide();
     ui->LinearEquationSolverMenu->hide();
+    ui->quadraticEquationSolverMenu->hide();
 }
 
 
 void AlgebraXpert::onLinearEquationSolverButtonClicked()
 {
     ui->LinearEquationSolverMenu->show();
+    ui->quadraticEquationSolverMenu->hide();
 }
 
+void AlgebraXpert::onQuadraticEquationSolverButtonClicked()
+{
+    ui->LinearEquationSolverMenu->hide();
+    ui->quadraticEquationSolverMenu->show();
+}
+
+//######################################################################################################
+//######################################### -> SOLVING LOGIC <- ########################################
+//######################################################################################################
 
 void AlgebraXpert::onLinearEquationSolveButtonClicked() {
     bool checkA, checkB, checkC;
@@ -76,6 +90,35 @@ void AlgebraXpert::onLinearEquationSolveButtonClicked() {
     } else {
         ui->showResultEquationTextEdit->setPlainText("Invalid input. Please enter valid numbers.");
         ui->showResultXTextEdit->clear();
+    }
+}
+
+
+void AlgebraXpert::onQuadraticEquationSolveButtonClicked()
+{
+    bool checkA, checkB, checkC, checkD;
+
+    double a = ui->enter_a_TextEdit_quadratic->toPlainText().toDouble(&checkA);
+    double b = ui->enter_b_TextEdit_quadratic->toPlainText().toDouble(&checkB);
+    double c = ui->enter_c_TextEdit_quadratic->toPlainText().toDouble(&checkC);
+    double d = ui->enter_d_TextEdit_quadratic->toPlainText().toDouble(&checkD);
+
+    if (checkA && checkB && checkC && checkD) {
+        std::unique_ptr<QuadraticEquation> equation = std::make_unique<QuadraticEquation>(a, b, c, d);
+
+        try {
+            equation->solve();
+
+            ui->showResultQuadraticEquationTextEdit->setPlainText(QString::fromStdString(equation->getEquation()));
+            ui->showResultXInQuadraticTextEdit->setPlainText(QString::fromStdString(equation->getX()));
+        } catch (const std::runtime_error &err) {
+
+            ui->showResultQuadraticEquationTextEdit->setPlainText("Error: " + QString::fromStdString(err.what()));
+            ui->showResultXInQuadraticTextEdit->clear();
+        }
+    } else {
+        ui->showResultQuadraticEquationTextEdit->setPlainText("Invalid input. Please enter valid numbers.");
+        ui->showResultXInQuadraticTextEdit->clear();
     }
 }
 
