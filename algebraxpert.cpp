@@ -18,6 +18,7 @@ AlgebraXpert::AlgebraXpert(QWidget *parent)
     connect(ui->systemEquationsSolverButton, &QPushButton::clicked, this, &AlgebraXpert::onSystemEquationSolverButtonClicked);
     connect(ui->linearEquationSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onLinearEquationSolveButtonClicked);
     connect(ui->quadraticEquationSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onQuadraticEquationSolveButtonClicked);
+    connect(ui->systemEquationSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onSystemEquationSolveButtonClicked);
 }
 
 AlgebraXpert::~AlgebraXpert()
@@ -131,6 +132,32 @@ void AlgebraXpert::onQuadraticEquationSolveButtonClicked()
     } else {
         ui->showResultQuadraticEquationTextEdit->setPlainText("Invalid input. Please enter valid numbers.");
         ui->showResultXInQuadraticTextEdit->clear();
+    }
+}
+
+
+
+
+
+void AlgebraXpert::onSystemEquationSolveButtonClicked()
+{
+    std::string input = ui->enterSystemCoefficientsMatrixTextEdit->toPlainText().toStdString();
+
+    if (Utils::validateMatrixInput(input)) {
+
+        std::vector<std::vector<double>> coefficients;
+        std::vector<double> d;
+
+        Utils::parseMatrix(input, coefficients, d);
+
+        std::unique_ptr<SystemSolver> system = std::make_unique<SystemSolver>(coefficients, d);
+
+        system->solve();
+
+        ui->showSystemSolverResultTextEdit->setPlainText(QString::fromStdString(system->getResult()));
+
+    } else {
+        ui->showSystemSolverResultTextEdit->setPlainText(QString::fromStdString("Invalid Coefficients Matrix"));
     }
 }
 

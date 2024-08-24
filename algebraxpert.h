@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include <QWidget>
+#include "utils/utils.h"
+#include "solvers/system_solver/system_solver.h"
 #include "solvers/linear_equation_solver/linear_equation_solver.h"
 #include "solvers/quadratic_equation_solver/quadratic_equation_solver.h"
 
@@ -35,6 +37,8 @@ private slots:
     void onQuadraticEquationSolveButtonClicked();
 
     void onSystemEquationSolverButtonClicked();
+
+    void onSystemEquationSolveButtonClicked();
 
 private:
     Ui::AlgebraXpert *ui;
