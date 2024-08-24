@@ -34,6 +34,8 @@ private slots:
 
     void onQuadraticEquationSolveButtonClicked();
 
+    void onSystemEquationSolverButtonClicked();
+
 private:
     Ui::AlgebraXpert *ui;
 

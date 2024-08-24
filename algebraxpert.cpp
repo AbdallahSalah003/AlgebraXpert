@@ -9,11 +9,13 @@ AlgebraXpert::AlgebraXpert(QWidget *parent)
     ui->sideBar->hide();
     ui->LinearEquationSolverMenu->hide();
     ui->quadraticEquationSolverMenu->hide();
+    ui->systemEquationsSolverMenu->hide();
     connect(ui->startButton, &QPushButton::clicked, this, &AlgebraXpert::onStartButtonClicked);
     connect(ui->exitButton, &QPushButton::clicked, this, &AlgebraXpert::onExitButtonClicked);
     connect(ui->backButton, &QPushButton::clicked, this, &AlgebraXpert::onBackButtonClicked);
     connect(ui->linearEquationSolverButton, &QPushButton::clicked, this, &AlgebraXpert::onLinearEquationSolverButtonClicked);
     connect(ui->quadraticEquationSolverButton, &QPushButton::clicked, this, &AlgebraXpert::onQuadraticEquationSolverButtonClicked);
+    connect(ui->systemEquationsSolverButton, &QPushButton::clicked, this, &AlgebraXpert::onSystemEquationSolverButtonClicked);
     connect(ui->linearEquationSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onLinearEquationSolveButtonClicked);
     connect(ui->quadraticEquationSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onQuadraticEquationSolveButtonClicked);
 }
@@ -48,6 +50,7 @@ void AlgebraXpert::onBackButtonClicked()
     ui->sideBar->hide();
     ui->LinearEquationSolverMenu->hide();
     ui->quadraticEquationSolverMenu->hide();
+    ui->systemEquationsSolverMenu->hide();
 }
 
 
@@ -55,12 +58,21 @@ void AlgebraXpert::onLinearEquationSolverButtonClicked()
 {
     ui->LinearEquationSolverMenu->show();
     ui->quadraticEquationSolverMenu->hide();
+    ui->systemEquationsSolverMenu->hide();
 }
 
 void AlgebraXpert::onQuadraticEquationSolverButtonClicked()
 {
     ui->LinearEquationSolverMenu->hide();
+    ui->systemEquationsSolverMenu->hide();
     ui->quadraticEquationSolverMenu->show();
+}
+
+void AlgebraXpert::onSystemEquationSolverButtonClicked()
+{
+    ui->LinearEquationSolverMenu->hide();
+    ui->quadraticEquationSolverMenu->hide();
+    ui->systemEquationsSolverMenu->show();
 }
 
 //######################################################################################################
@@ -121,4 +133,7 @@ void AlgebraXpert::onQuadraticEquationSolveButtonClicked()
         ui->showResultXInQuadraticTextEdit->clear();
     }
 }
+
+
+
 
