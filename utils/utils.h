@@ -10,7 +10,9 @@ class Utils {
 
 public:
     static void parseMatrix(const string& input, vector<vector<double>>& coefficients, vector<double>& d);
+    static void parseMatrix(const string& input, vector<vector<double>>& data);
     static bool isNumber(const string& str);
-    static bool validateMatrixInput(const string& input);
+    static bool validateSystemCoeffiecientsInput(const string& input);
+    static bool validateMatrixInput(const string& matrix);
 };
 #endif // UTILS_H
