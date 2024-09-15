@@ -13,6 +13,7 @@ AlgebraXpert::AlgebraXpert(QWidget *parent)
     ui->matrixBinaryOperationsMenu->hide();
     ui->matrixDeterminantMenu->hide();
     ui->matrixInverseMenu->hide();
+    ui->matrixEigenValuesMenu->hide();
     connect(ui->startButton, &QPushButton::clicked, this, &AlgebraXpert::onStartButtonClicked);
     connect(ui->exitButton, &QPushButton::clicked, this, &AlgebraXpert::onExitButtonClicked);
     connect(ui->backButton, &QPushButton::clicked, this, &AlgebraXpert::onBackButtonClicked);
@@ -28,6 +29,8 @@ AlgebraXpert::AlgebraXpert(QWidget *parent)
     connect(ui->matrixDeterminantSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onMatrixDeterminantSolveButtonClicked);
     connect(ui->matrixInverseButton, &QPushButton::clicked, this, &AlgebraXpert::onMatrixInverseButtonClicked);
     connect(ui->matrixInverseSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onMatrixInverseSolveButtonClicked);
+    connect(ui->matrixEigenValuesButton, &QPushButton::clicked, this, &AlgebraXpert::onMatrixEigenValuesButtonClicked);
+    connect(ui->matrixEigenValuesSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onMatrixEigenValuesSolveButtonClicked);
 }
 
 AlgebraXpert::~AlgebraXpert()
@@ -64,6 +67,7 @@ void AlgebraXpert::onBackButtonClicked()
     ui->matrixBinaryOperationsMenu->hide();
     ui->matrixDeterminantMenu->hide();
     ui->matrixInverseMenu->hide();
+    ui->matrixEigenValuesMenu->hide();
 }
 
 
@@ -75,6 +79,7 @@ void AlgebraXpert::onLinearEquationSolverButtonClicked()
     ui->matrixBinaryOperationsMenu->hide();
     ui->matrixDeterminantMenu->hide();
     ui->matrixInverseMenu->hide();
+    ui->matrixEigenValuesMenu->hide();
 }
 
 void AlgebraXpert::onQuadraticEquationSolverButtonClicked()
@@ -85,6 +90,7 @@ void AlgebraXpert::onQuadraticEquationSolverButtonClicked()
     ui->matrixBinaryOperationsMenu->hide();
     ui->matrixDeterminantMenu->hide();
     ui->matrixInverseMenu->hide();
+    ui->matrixEigenValuesMenu->hide();
 }
 
 void AlgebraXpert::onSystemEquationSolverButtonClicked()
@@ -95,6 +101,7 @@ void AlgebraXpert::onSystemEquationSolverButtonClicked()
     ui->matrixBinaryOperationsMenu->hide();
     ui->matrixDeterminantMenu->hide();
     ui->matrixInverseMenu->hide();
+    ui->matrixEigenValuesMenu->hide();
 }
 void AlgebraXpert::onMatrixBinaryOperationsButtonClicked()
 {
@@ -104,6 +111,7 @@ void AlgebraXpert::onMatrixBinaryOperationsButtonClicked()
     ui->matrixBinaryOperationsMenu->show();
     ui->matrixDeterminantMenu->hide();
     ui->matrixInverseMenu->hide();
+    ui->matrixEigenValuesMenu->hide();
 }
 void AlgebraXpert::onMatrixDeterminantButtonClicked()
 {
@@ -113,6 +121,7 @@ void AlgebraXpert::onMatrixDeterminantButtonClicked()
     ui->matrixBinaryOperationsMenu->hide();
     ui->matrixDeterminantMenu->show();
     ui->matrixInverseMenu->hide();
+    ui->matrixEigenValuesMenu->hide();
 }
 void AlgebraXpert::onMatrixInverseButtonClicked()
 {
@@ -122,6 +131,17 @@ void AlgebraXpert::onMatrixInverseButtonClicked()
     ui->matrixBinaryOperationsMenu->hide();
     ui->matrixDeterminantMenu->hide();
     ui->matrixInverseMenu->show();
+    ui->matrixEigenValuesMenu->hide();
+}
+void AlgebraXpert::onMatrixEigenValuesButtonClicked()
+{
+    ui->LinearEquationSolverMenu->hide();
+    ui->systemEquationsSolverMenu->hide();
+    ui->quadraticEquationSolverMenu->hide();
+    ui->matrixBinaryOperationsMenu->hide();
+    ui->matrixDeterminantMenu->hide();
+    ui->matrixInverseMenu->hide();
+    ui->matrixEigenValuesMenu->show();
 }
 
 //######################################################################################################
@@ -264,8 +284,10 @@ void AlgebraXpert::onMatrixDeterminantSolveButtonClicked()
     Matrix<double> matrix_obj(data);
     try {
         std::ostringstream stream;
-        stream << std::fixed << std::setprecision(2);
-        stream << matrix_obj.determinant();
+        stream << std::fixed << std::setprecision(3);
+        double det = matrix_obj.determinant();
+        if(std::abs(det) < 1e-3) stream << 0;
+        else stream << det;
         ui->showMatrixDeterminant->setPlainText(QString::fromStdString(stream.str()));
     } catch (const std::exception &e) {
         ui->showMatrixDeterminant->setPlainText(QString::fromStdString(e.what()));
@@ -289,5 +311,30 @@ void AlgebraXpert::onMatrixInverseSolveButtonClicked()
         ui->showMatrixInverse->setPlainText(QString::fromStdString(result_matrix.print()));
     } catch (const std::exception &e) {
         ui->showMatrixInverse->setPlainText(QString::fromStdString(e.what()));
+    }
+}
+void AlgebraXpert::onMatrixEigenValuesSolveButtonClicked()
+{
+    std::string matrix = ui->enterMatrixEigenValuesTextEdit->toPlainText().toStdString();
+    if(!Utils::validateMatrixInput(matrix))
+    {
+        ui->showMatrixEigenValues->setPlainText("Invalid input Matrix");
+        return;
+    }
+    std::vector<std::vector<double>> data;
+    Utils::parseMatrix(matrix, data);
+    Matrix<double> matrix_obj(data);
+    std::vector<double> result;
+    try {
+        result = matrix_obj.eigenvalues();
+        std::ostringstream stream;
+        stream << std::fixed << std::setprecision(3);
+        for(size_t i=0; i<result.size(); ++i) {
+            if(std::abs(result[i]) < 1e-3) stream << 0 << " ";
+            else stream << result[i] << " ";
+        }
+        ui->showMatrixEigenValues->setPlainText(QString::fromStdString(stream.str()));
+    } catch (const std::exception &e) {
+        ui->showMatrixEigenValues->setPlainText(QString::fromStdString(e.what()));
     }
 }

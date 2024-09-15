@@ -50,6 +50,9 @@ private slots:
     void onMatrixInverseButtonClicked();
     void onMatrixInverseSolveButtonClicked();
 
+    void onMatrixEigenValuesButtonClicked();
+    void onMatrixEigenValuesSolveButtonClicked();
+
 private:
     Ui::AlgebraXpert *ui;
 
