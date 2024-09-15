@@ -36,6 +36,8 @@ public:
     Matrix<T> inverse() const;
     T determinant() const;
 
+    std::vector<T> eigenvalues() const;
+
     std::string print() const;
 };
 
@@ -198,15 +200,29 @@ Matrix<T> Matrix<T>::inverse() const {
     return result;
 }
 
+template <typename T>
+std::vector<T> Matrix<T>::eigenvalues() const {
+    if (rows != cols) {
+        throw std::invalid_argument("Eigenvalues are only defined for square matrices");
+    }
+    Eigen::EigenSolver<Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>> solver(toEigen());
+    Eigen::VectorXcd eigvals = solver.eigenvalues();
+    std::vector<T> realEigenvalues(rows);
+    for (size_t i = 0; i < rows; ++i) {
+        realEigenvalues[i] = eigvals[i].real();
+    }
+    return realEigenvalues;
+}
 
 template <typename T>
 std::string Matrix<T>::print() const
 {
     std::ostringstream stream;
-    stream << std::fixed << std::setprecision(2);
+    stream << std::fixed << std::setprecision(3);
     for (size_t i = 0; i < rows; ++i) {
         for (size_t j = 0; j < cols; ++j) {
-            stream << data[i][j] << " ";
+            if(std::abs(data[i][j]) < 1e-3) stream << 0 << " ";
+            else stream << data[i][j] << " ";
         }
         stream << "\n";
     }
