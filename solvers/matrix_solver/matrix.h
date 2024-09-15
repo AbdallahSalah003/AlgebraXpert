@@ -4,6 +4,8 @@
 #include <vector>
 #include <stdexcept>
 #include <sstream>
+#include <Eigen/Dense>
+
 
 template <typename T>
 class Matrix {
@@ -11,6 +13,9 @@ private:
     std::vector<std::vector<T>> data;
     size_t rows;
     size_t cols;
+
+    Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> toEigen() const;
+    void fromEigen(const Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>& eigenMatrix);
 
 public:
     Matrix(size_t rows, size_t cols);
@@ -26,6 +31,10 @@ public:
     Matrix<T> operator-(const Matrix<T>& other) const;
     Matrix<T> operator*(const Matrix<T>& other) const;
     Matrix<T> operator*(const T& scalar) const;
+
+    Matrix<T> transpose() const;
+    Matrix<T> inverse() const;
+    T determinant() const;
 
     std::string print() const;
 };
@@ -135,11 +144,66 @@ Matrix<T> Matrix<T>::operator*(const T& scalar) const
     }
     return result;
 }
+template <typename T>
+Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> Matrix<T>::toEigen() const {
+    Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> eigenMatrix(rows, cols);
+    for (size_t i = 0; i < rows; ++i) {
+        for (size_t j = 0; j < cols; ++j) {
+            eigenMatrix(i, j) = data[i][j];
+        }
+    }
+    return eigenMatrix;
+}
+
+template <typename T>
+void Matrix<T>::fromEigen(const Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>& eigenMatrix) {
+    rows = eigenMatrix.rows();
+    cols = eigenMatrix.cols();
+    data.resize(rows, std::vector<T>(cols));
+    for (size_t i = 0; i < rows; ++i) {
+        for (size_t j = 0; j < cols; ++j) {
+            data[i][j] = eigenMatrix(i, j);
+        }
+    }
+}
+
+template <typename T>
+Matrix<T> Matrix<T>::transpose() const {
+    Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> eigenMatrix = toEigen().transpose();
+    Matrix result(eigenMatrix.rows(), eigenMatrix.cols());
+    result.fromEigen(eigenMatrix);
+    return result;
+}
+
+template <typename T>
+T Matrix<T>::determinant() const {
+    if (rows != cols) {
+        throw std::invalid_argument("Determinant is only defined for square matrices");
+    }
+    return toEigen().determinant();
+}
+
+template <typename T>
+Matrix<T> Matrix<T>::inverse() const {
+    if (rows != cols) {
+        throw std::invalid_argument("Inverse is only defined for square matrices");
+    }
+    Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> eigenMatrix = toEigen();
+    if (eigenMatrix.determinant() == 0) {
+        throw std::runtime_error("Matrix is singular and cannot be inverted");
+    }
+    eigenMatrix = eigenMatrix.inverse();
+    Matrix result(eigenMatrix.rows(), eigenMatrix.cols());
+    result.fromEigen(eigenMatrix);
+    return result;
+}
+
 
 template <typename T>
 std::string Matrix<T>::print() const
 {
     std::ostringstream stream;
+    stream << std::fixed << std::setprecision(2);
     for (size_t i = 0; i < rows; ++i) {
         for (size_t j = 0; j < cols; ++j) {
             stream << data[i][j] << " ";
