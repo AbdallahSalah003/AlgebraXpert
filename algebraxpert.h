@@ -44,6 +44,12 @@ private slots:
     void onMatrixBinaryOperationsButtonClicked();
     void onMatrixBinaryOperationsSolveButtonClicked();
 
+    void onMatrixDeterminantButtonClicked();
+    void onMatrixDeterminantSolveButtonClicked();
+
+    void onMatrixInverseButtonClicked();
+    void onMatrixInverseSolveButtonClicked();
+
 private:
     Ui::AlgebraXpert *ui;
 
