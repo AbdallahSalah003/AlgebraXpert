@@ -1,7 +1,7 @@
 #ifndef SYSTEM_SOLVER_H
 #define SYSTEM_SOLVER_H
 
-#include <iostream>
+#include <iomanip>
 #include <vector>
 #include <Eigen/Dense>
 
