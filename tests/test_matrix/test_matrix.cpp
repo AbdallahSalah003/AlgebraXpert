@@ -1,5 +1,5 @@
 #include <QtTest/QTest>
-#include "../solvers/matrix_solver/matrix.h"
+#include "../../solvers/matrix_solver/matrix.h"
 
 class TestMatrix: public QObject
 {
