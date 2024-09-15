@@ -19,9 +19,9 @@ SOURCES += \
 HEADERS += \
     algebraxpert.h \
     solvers/equation_solver/equation_solver.h \
-    solvers/linear_equation_solver/linear_equation_solver.hpp \
+    solvers/linear_equation_solver/linear_equation_solver.h \
     solvers/matrix_solver/matrix.h \
-    solvers/quadratic_equation_solver/quadratic_equation_solver.hpp \
+    solvers/quadratic_equation_solver/quadratic_equation_solver.h \
     solvers/system_solver/system_solver.h \
     utils/utils.h
 

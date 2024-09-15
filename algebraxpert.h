@@ -8,6 +8,7 @@
 #include "solvers/system_solver/system_solver.h"
 #include "solvers/linear_equation_solver/linear_equation_solver.h"
 #include "solvers/quadratic_equation_solver/quadratic_equation_solver.h"
+#include "solvers/matrix_solver/matrix.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -41,6 +42,7 @@ private slots:
     void onSystemEquationSolveButtonClicked();
 
     void onMatrixBinaryOperationsButtonClicked();
+    void onMatrixBinaryOperationsSolveButtonClicked();
 
 private:
     Ui::AlgebraXpert *ui;

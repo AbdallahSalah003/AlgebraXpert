@@ -10,7 +10,7 @@ AlgebraXpert::AlgebraXpert(QWidget *parent)
     ui->LinearEquationSolverMenu->hide();
     ui->quadraticEquationSolverMenu->hide();
     ui->systemEquationsSolverMenu->hide();
-
+    ui->matrixBinaryOperationsMenu->hide();
     connect(ui->startButton, &QPushButton::clicked, this, &AlgebraXpert::onStartButtonClicked);
     connect(ui->exitButton, &QPushButton::clicked, this, &AlgebraXpert::onExitButtonClicked);
     connect(ui->backButton, &QPushButton::clicked, this, &AlgebraXpert::onBackButtonClicked);
@@ -21,7 +21,7 @@ AlgebraXpert::AlgebraXpert(QWidget *parent)
     connect(ui->quadraticEquationSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onQuadraticEquationSolveButtonClicked);
     connect(ui->systemEquationSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onSystemEquationSolveButtonClicked);
     connect(ui->matrixBinaryOperationsButton, &QPushButton::clicked, this, &AlgebraXpert::onMatrixBinaryOperationsButtonClicked);
-
+    connect(ui->matrixOperationSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onMatrixBinaryOperationsSolveButtonClicked);
 }
 
 AlgebraXpert::~AlgebraXpert()
@@ -55,6 +55,7 @@ void AlgebraXpert::onBackButtonClicked()
     ui->LinearEquationSolverMenu->hide();
     ui->quadraticEquationSolverMenu->hide();
     ui->systemEquationsSolverMenu->hide();
+    ui->matrixBinaryOperationsMenu->hide();
 }
 
 
@@ -63,6 +64,7 @@ void AlgebraXpert::onLinearEquationSolverButtonClicked()
     ui->LinearEquationSolverMenu->show();
     ui->quadraticEquationSolverMenu->hide();
     ui->systemEquationsSolverMenu->hide();
+    ui->matrixBinaryOperationsMenu->hide();
 }
 
 void AlgebraXpert::onQuadraticEquationSolverButtonClicked()
@@ -70,6 +72,7 @@ void AlgebraXpert::onQuadraticEquationSolverButtonClicked()
     ui->LinearEquationSolverMenu->hide();
     ui->systemEquationsSolverMenu->hide();
     ui->quadraticEquationSolverMenu->show();
+    ui->matrixBinaryOperationsMenu->hide();
 }
 
 void AlgebraXpert::onSystemEquationSolverButtonClicked()
@@ -77,12 +80,14 @@ void AlgebraXpert::onSystemEquationSolverButtonClicked()
     ui->LinearEquationSolverMenu->hide();
     ui->quadraticEquationSolverMenu->hide();
     ui->systemEquationsSolverMenu->show();
+    ui->matrixBinaryOperationsMenu->hide();
 }
 void AlgebraXpert::onMatrixBinaryOperationsButtonClicked()
 {
     ui->LinearEquationSolverMenu->hide();
     ui->systemEquationsSolverMenu->hide();
     ui->quadraticEquationSolverMenu->hide();
+    ui->matrixBinaryOperationsMenu->show();
 }
 //######################################################################################################
 //######################################### -> SOLVING LOGIC <- ########################################
@@ -151,7 +156,7 @@ void AlgebraXpert::onSystemEquationSolveButtonClicked()
 {
     std::string input = ui->enterSystemCoefficientsMatrixTextEdit->toPlainText().toStdString();
 
-    if (Utils::validateMatrixInput(input)) {
+    if (Utils::validateSystemCoeffiecientsInput(input)) {
 
         std::vector<std::vector<double>> coefficients;
         std::vector<double> d;
@@ -170,5 +175,45 @@ void AlgebraXpert::onSystemEquationSolveButtonClicked()
 }
 
 
+void AlgebraXpert::onMatrixBinaryOperationsSolveButtonClicked()
+{
+    std::string matrix1 = ui->enterMatrix1TextEdit->toPlainText().toStdString();
+    std::string matrix2 = ui->enterMatrix2TextEdit->toPlainText().toStdString();
+    std::string operation = ui->matrixOperationComboBox->currentText().toStdString();
+    if (operation == "Select Operation") {
+        ui->showMatrixOperationResult->setPlainText("Please select an operation");
+        return;
+    }
+    if (!Utils::validateMatrixInput(matrix1) || !Utils::validateMatrixInput(matrix2)) {
+        ui->showMatrixOperationResult->setPlainText("Invalid input Matrices");
+        return;
+    }
+    std::vector<std::vector<double>> data1, data2;
+    Utils::parseMatrix(matrix1, data1);
+    Utils::parseMatrix(matrix2, data2);
 
+    Matrix<double> matrix1_obj(data1);
+    Matrix<double> matrix2_obj(data2);
+    Matrix<double> result_matrix(data1.size(), data1[0].size());
+    try {
+        switch (operation[0]) {
+        case '+':
+            result_matrix = matrix1_obj + matrix2_obj;
+            break;
+        case '-':
+            result_matrix = matrix1_obj - matrix2_obj;
+            break;
+        case '*':
+            result_matrix = matrix1_obj * matrix2_obj;
+            break;
+        default:
+            ui->showMatrixOperationResult->setPlainText("Unsupported operation");
+            return;
+        }
+        ui->showMatrixOperationResult->setPlainText(QString::fromStdString(result_matrix.print()));
+    } catch (const std::invalid_argument& e) {
+        ui->showMatrixOperationResult->setPlainText(QString::fromStdString(e.what()));
+    }
+
+}
 
