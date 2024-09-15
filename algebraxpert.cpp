@@ -10,6 +10,7 @@ AlgebraXpert::AlgebraXpert(QWidget *parent)
     ui->LinearEquationSolverMenu->hide();
     ui->quadraticEquationSolverMenu->hide();
     ui->systemEquationsSolverMenu->hide();
+
     connect(ui->startButton, &QPushButton::clicked, this, &AlgebraXpert::onStartButtonClicked);
     connect(ui->exitButton, &QPushButton::clicked, this, &AlgebraXpert::onExitButtonClicked);
     connect(ui->backButton, &QPushButton::clicked, this, &AlgebraXpert::onBackButtonClicked);
@@ -19,6 +20,8 @@ AlgebraXpert::AlgebraXpert(QWidget *parent)
     connect(ui->linearEquationSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onLinearEquationSolveButtonClicked);
     connect(ui->quadraticEquationSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onQuadraticEquationSolveButtonClicked);
     connect(ui->systemEquationSolveButton, &QPushButton::clicked, this, &AlgebraXpert::onSystemEquationSolveButtonClicked);
+    connect(ui->matrixBinaryOperationsButton, &QPushButton::clicked, this, &AlgebraXpert::onMatrixBinaryOperationsButtonClicked);
+
 }
 
 AlgebraXpert::~AlgebraXpert()
@@ -75,7 +78,12 @@ void AlgebraXpert::onSystemEquationSolverButtonClicked()
     ui->quadraticEquationSolverMenu->hide();
     ui->systemEquationsSolverMenu->show();
 }
-
+void AlgebraXpert::onMatrixBinaryOperationsButtonClicked()
+{
+    ui->LinearEquationSolverMenu->hide();
+    ui->systemEquationsSolverMenu->hide();
+    ui->quadraticEquationSolverMenu->hide();
+}
 //######################################################################################################
 //######################################### -> SOLVING LOGIC <- ########################################
 //######################################################################################################

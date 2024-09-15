@@ -20,6 +20,7 @@ HEADERS += \
     algebraxpert.h \
     solvers/equation_solver/equation_solver.h \
     solvers/linear_equation_solver/linear_equation_solver.hpp \
+    solvers/matrix_solver/matrix.h \
     solvers/quadratic_equation_solver/quadratic_equation_solver.hpp \
     solvers/system_solver/system_solver.h \
     utils/utils.h

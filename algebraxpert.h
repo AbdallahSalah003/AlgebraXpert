@@ -40,6 +40,8 @@ private slots:
 
     void onSystemEquationSolveButtonClicked();
 
+    void onMatrixBinaryOperationsButtonClicked();
+
 private:
     Ui::AlgebraXpert *ui;
 
