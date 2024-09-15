@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <sstream>
 #include <Eigen/Dense>
+#include <iomanip>
 
 
 template <typename T>
