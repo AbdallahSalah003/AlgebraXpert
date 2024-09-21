@@ -25,7 +25,8 @@
    <string>AlgebraXpert</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="QIcon::ThemeIcon::GoHome"/>
+   <iconset resource="resources.qrc">
+    <normaloff>:/images/assets/algebra-vector.jpg</normaloff>:/images/assets/algebra-vector.jpg</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -151,7 +152,8 @@ QPushButton:hover {
      <string>Start</string>
     </property>
     <property name="icon">
-     <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart"/>
+     <iconset resource="resources.qrc">
+      <normaloff>:/images/assets/play.png</normaloff>:/images/assets/play.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -213,7 +215,8 @@ QPushButton:hover {
      <string>Exit</string>
     </property>
     <property name="icon">
-     <iconset theme="QIcon::ThemeIcon::EditClear"/>
+     <iconset resource="resources.qrc">
+      <normaloff>:/images/assets/no.png</normaloff>:/images/assets/no.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -274,7 +277,8 @@ QPushButton:hover {
       <string/>
      </property>
      <property name="icon">
-      <iconset theme="QIcon::ThemeIcon::GoHome"/>
+      <iconset resource="resources.qrc">
+       <normaloff>:/images/assets/house.png</normaloff>:/images/assets/house.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="linearEquationSolverButton">
@@ -879,7 +883,8 @@ QPushButton:hover {
       <string>Solve</string>
      </property>
      <property name="icon">
-      <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart"/>
+      <iconset resource="resources.qrc">
+       <normaloff>:/images/assets/play.png</normaloff>:/images/assets/play.png</iconset>
      </property>
     </widget>
    </widget>
@@ -1267,7 +1272,8 @@ QPushButton:hover {
       <string>Solve</string>
      </property>
      <property name="icon">
-      <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart"/>
+      <iconset resource="resources.qrc">
+       <normaloff>:/images/assets/play.png</normaloff>:/images/assets/play.png</iconset>
      </property>
     </widget>
     <widget class="QTextEdit" name="labelEnter_d_quadratic">
@@ -1540,7 +1546,8 @@ QPushButton:hover {
       <string>Solve</string>
      </property>
      <property name="icon">
-      <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart"/>
+      <iconset resource="resources.qrc">
+       <normaloff>:/images/assets/play.png</normaloff>:/images/assets/play.png</iconset>
      </property>
     </widget>
    </widget>
@@ -1709,7 +1716,8 @@ QPushButton:hover {
       <string>Solve</string>
      </property>
      <property name="icon">
-      <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart"/>
+      <iconset resource="resources.qrc">
+       <normaloff>:/images/assets/play.png</normaloff>:/images/assets/play.png</iconset>
      </property>
     </widget>
     <widget class="QTextEdit" name="showMatrixOperationResult">
@@ -1897,7 +1905,8 @@ QPushButton:hover {
       <string>Solve</string>
      </property>
      <property name="icon">
-      <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart"/>
+      <iconset resource="resources.qrc">
+       <normaloff>:/images/assets/play.png</normaloff>:/images/assets/play.png</iconset>
      </property>
     </widget>
     <widget class="QTextEdit" name="labelResultMatrixInverse">
@@ -2069,7 +2078,8 @@ QPushButton:hover {
       <string>Solve</string>
      </property>
      <property name="icon">
-      <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart"/>
+      <iconset resource="resources.qrc">
+       <normaloff>:/images/assets/play.png</normaloff>:/images/assets/play.png</iconset>
      </property>
     </widget>
     <widget class="QTextEdit" name="labelResultMatrixDeterminant">
@@ -2241,7 +2251,8 @@ QPushButton:hover {
       <string>Solve</string>
      </property>
      <property name="icon">
-      <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart"/>
+      <iconset resource="resources.qrc">
+       <normaloff>:/images/assets/play.png</normaloff>:/images/assets/play.png</iconset>
      </property>
     </widget>
     <widget class="QTextEdit" name="labelResultMatrixEigneValues">

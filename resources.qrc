@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/images">
         <file>assets/algebra-vector.jpg</file>
+        <file>assets/house.png</file>
+        <file>assets/no.png</file>
+        <file>assets/play.png</file>
     </qresource>
 </RCC>
